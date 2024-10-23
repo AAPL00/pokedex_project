@@ -8,24 +8,30 @@ for (let i = 1; i <= 151; i++) {
 }
 
 function showPokemon(data) {
+
+    let types = data.types.map(types => `<p class="type ${type.type.name}">${type.type.name}</p>`);
+    console.log(types);
+
+
+
     const div = document.createElement("div")
     div.classList.add("pokemon")
     div.innerHTML = `
         <div class="pokemon-image">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/151.png">
+            <img src="${data.sprites.other["official-artwork"].front_default}" alt="${data.name}">
         </div>
         <div class="pokemon-info">
             <div class="name-container">
-                <p class="pokemon-number">#151</p>
-                <h2 class="pokemon-name">Mew</h2>
+                <p class="pokemon-number">${data.id}</p>
+                <h2 class="pokemon-name">${data.name}</h2>
             </div>
             <div class="pokemon-type">
-                <p class="type psychic">PSIQUICO</p>
-                <p class="type normal">NORMAL</p>
+                ${types}
             </div>
             <div class="pokemon-stats">
-                <p class="stat">4m</p>
-                <p class="stat">40KG</p>
+                <p class="stat">${data.height}M</p>
+                <p class="stat">${data.weight}KG</p>
             </div>
-        </div>`
+        </div>`;
+    pokemonList.append(div)
 }
